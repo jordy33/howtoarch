@@ -1,0 +1,14 @@
+
+
+python its going to look for a few places for a module, its going to look inside packages in your directory of your script
+
+sudo apt-get install python-matplotlib
+or
+sudo pacman -S python-matplotlib
+
+
+apt-get install python-pexpect
+sudo pacman -S python-pexpect
+
+
+
