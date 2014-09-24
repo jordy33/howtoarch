@@ -1,0 +1,28 @@
+﻿
+for avoiding crazy pasting in vim: 
+set paste
+
+for text wrapping to cero: 
+set tw=0
+
+
+
+https://developers.google.com/speed/libraries/devguide#jquery
+
+https://www.hittail.com
+https://www.google.com/analytics/web
+
+
+
+You can import from google that host de query library.
+
+Add to the end of the body in index.html
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+Everything committed in the past:
+git commit -am “tag”
+
+

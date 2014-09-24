@@ -1,0 +1,100 @@
+udevil http://lostsalad.co.za/2012/12/02/raspberry-pi-torrent-box
+https://wiki.archlinux.org/index.php/Deluge
+https://wiki.archlinux.org/index.php/samba
+http://obihoernchen.net/wordpress/877/setup-samba-4-on-arch-linux/
+https://wiki.archlinux.org/index.php/users_and_groups
+
+passwd
+hostnamectl set-hostname raspberry
+timedatectl set-timezone America/Mexico_City
+pacman -Syu   //full system upgrade
+reboot
+mkdir /media
+chmod 777 /media
+mkdir /media/sd1
+chmod 777 /media/sd1
+
+fdisk -l
+cd /etc
+nano fstab
+/dev/sdd1    /media/sd1    vfat    rw,user,exec,umask=000 0 0
+
+
+#pacman -Sy udevil
+#systemctl enable devmon@root
+#reboot
+#cd /media/sdd1-usb-Kingston_FCR-HS2
+#cd 
+pacman -S samba
+cd /etc/samba
+nano smb.conf
+
+[global]
+   workgroup = WORKGROUP
+   server string = RASPBERRY
+   netbios name = RASPBERRY
+   # hosts allow = 192.168.0.
+   printcap name = /dev/null
+   load printers = no
+   disable spoolss = yes
+   printing = bsd
+   log file = /var/log/samba/log.%m
+   max log size = 50
+   security = user
+   dns proxy = no
+   # For public share without login
+   map to guest = Bad User
+
+   # Android bugix for reading files (samba4 bug see: https://bugzilla.samba.or$
+   unix extensions = false
+   # Fix for file batch copy issues (see: http://archlinuxarm.org/forum/viewtop$
+   oplocks = no
+
+   # Some Tuning (See Optimize Performance)
+   socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072
+   write cache size = 131072
+   # this decreases read CPU load
+   use sendfile = true
+   getwd cache = yes
+   min receivefile size = 16384
+   # Global security
+   public = yes
+
+[sd1]
+   path = /media/sd1
+   public = yes
+   writable = yes
+   printable = no
+
+# useradd 
+# pdbedit -a -u samba_user
+# smbpasswd samba_user
+
+systemctl enable smbd nmbd
+systemctl start smbd nmbd
+
+#groupadd samba
+
+pacman -Sy deluge
+systemctl enable deluged.service
+systemctl start deluged.service 
+iptables -A INPUT -p tcp --dport 56881:56889 -j ACCEPT
+iptables -A INPUT -p udp --dport 56881:56889 -j ACCEPT
+iptables -A INPUT -p tcp --dport 58846 -j ACCEPT
+nano /srv/deluge/.config/deluge/auth
+add line 
+   pilus:lilus:10
+su --shell /bin/bash --login deluge
+deluge-console 
+connect 127.0.0.1:58846 pilus lilus
+config -s allow_remote True
+config allow_remote
+
+
+/media/sd1
+/srv/deluge/Downloads
+
+mount -o remount /dev/sdd1
+
+
+

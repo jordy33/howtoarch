@@ -1,0 +1,14 @@
+move web hosting to whatever directory i root home
+update github
+git add index.html
+git commit -m "mako templates"
+git push
+
+rm -R .git
+
+mkdir smartlink
+cd smartlink
+git clone https://github.com/jordy33/smartlinkWebServer.git
+
+
+

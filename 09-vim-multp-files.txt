@@ -1,0 +1,7 @@
+Vim
+:gg go top
+:GG go bottom
+Create a new text file
+:tabe 
+
+

@@ -1,0 +1,8 @@
+git rm index.html
+wget https://github.com/dhgamache/Skeleton/tarball/master
+tar -xvf master
+mv ./dhg-Skeleton-7ab6820/* .
+rm master
+git add index.html
+git add images/*
+dmesg | grep -i csr8510

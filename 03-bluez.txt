@@ -1,0 +1,10 @@
+dmesg | grep -i csr8510
+lsusb
+pacman -S bluez
+pacman -S bluez-utils
+modprobe btusb
+systemctl start bluetooth
+systemctl enable bluetooth
+bluetoothctl
+power on
+pacman -S python-pexpect

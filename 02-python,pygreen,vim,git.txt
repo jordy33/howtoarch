@@ -1,0 +1,26 @@
+pacman -S python
+pacman -S python-setuptools
+pacman -S python-pip
+easy-install pygreen
+pacman -S git
+pacman -S vim
+[root@raspberry /]# cd $home
+[root@raspberry ~]# vim index.html
+[root@raspberry ~]# ls
+index.html
+[root@raspberry ~]# touch README.md
+[root@raspberry ~]# git init
+Initialized empty Git repository in /root/.git/
+[root@raspberry ~]# git add README.md
+[root@raspberry ~]# git add index.html
+[root@raspberry ~]# git commit -m "first commit"
+[root@raspberry ~]# git config --global user.name "Jorge Macias"
+[root@raspberry ~]# git config --global user.email "jorgemacias@hotmail.com"
+[root@raspberry ~]# git commit --amend  --reset-author
+[root@raspberry ~]# git remote add origin https://github.com/jordy33/smartlinkWebServer.git
+
+
+
+
+
+
